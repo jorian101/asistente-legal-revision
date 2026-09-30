@@ -1,0 +1,20 @@
+.perfil-page { max-width: 960px; }
+.perfil-page h2, .perfil-page h3 { color: var(--color-text-strong); }
+.perfil-page__grid { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(320px, 1.3fr); gap: var(--spacing-lg); align-items: start; }
+.perfil-page__card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--spacing-lg); box-shadow: var(--shadow-subtle); }
+.perfil-page__card--identity { text-align: center; }
+.perfil-page__avatar { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; background: var(--color-primary-soft); color: var(--color-primary); font-size: var(--font-size-xl); font-weight: 800; }
+.perfil-page__card--identity h2 { margin: var(--spacing-md) 0 var(--spacing-xs); }
+.perfil-page__card--identity > p { color: var(--color-text-muted); margin: 0; }
+.perfil-page__card--identity dl { text-align: left; margin: var(--spacing-lg) 0; }
+.perfil-page__card--identity dl div { display: flex; justify-content: space-between; gap: var(--spacing-sm); padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--color-border); }
+.perfil-page__card--identity dt { color: var(--color-text-muted); }
+.perfil-page__card--identity dd { margin: 0; color: var(--color-text-strong); text-transform: capitalize; text-align: right; }
+.perfil-page__card--identity small { color: var(--color-text-muted); }
+.perfil-page__form { display: grid; gap: var(--spacing-sm); }
+.perfil-page__form label { display: grid; gap: var(--spacing-xs); color: var(--color-text-strong); font-size: var(--font-size-sm); font-weight: 600; }
+.perfil-page__divider { height: 1px; background: var(--color-border); margin: var(--spacing-md) 0; }
+.perfil-page__form h2, .perfil-page__form h3 { margin: 0; }
+.perfil-page__hint { color: var(--color-text-muted); font-size: var(--font-size-xs); margin: 0; }
+.perfil-page__guardar { justify-self: start; margin-top: var(--spacing-md); }
+@media (max-width: 768px) { .perfil-page__grid { grid-template-columns: 1fr; } }

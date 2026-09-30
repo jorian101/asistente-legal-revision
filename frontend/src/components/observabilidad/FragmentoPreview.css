@@ -1,0 +1,23 @@
+/* FragmentoPreview: contenido del Modal (metadatos + texto del fragmento). */
+
+.fragmento-preview__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.fragmento-preview__meta strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.fragmento-preview__texto {
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

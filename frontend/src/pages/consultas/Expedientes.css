@@ -1,0 +1,200 @@
+/* Expedientes — dashboard Sprint 4 (lista + detalle). */
+.expedientes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.expedientes__acciones {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.expedientes__form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.expedientes__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+/* Mismo ritmo que ui/Field (label 600 0.8rem). */
+.expedientes__label {
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.expedientes__file {
+  font-size: var(--font-size-sm);
+}
+
+.expedientes__form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .expedientes__form {
+    grid-template-columns: 1fr;
+  }
+
+  .expedientes__acciones {
+    flex-wrap: wrap;
+  }
+}
+
+.expedientes__hint {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+.expedientes__publicados {
+  margin-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-md);
+}
+
+.expedientes__publicados-titulo {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-strong);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.expedientes__publicados-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.expedientes__publicado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.expedientes__publicado-tipo {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.expedientes__publicado-autor {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Switch de estado (activo <-> archivado) — solo supervisor */
+
+/* ── Apertura: checklist de requisitos (vault taxonomía A) ── */
+.expedientes__alert {
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.expedientes__alert--warning {
+  border: 1px solid var(--color-warning-border);
+  background: var(--color-warning-bg);
+  color: var(--color-text-strong);
+}
+
+.expedientes__alert--error {
+  border: 1px solid var(--color-danger-border);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.expedientes__alert-titulo {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.expedientes__alert-lista {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+}
+
+.expedientes__alert-aviso {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-weight: 600;
+}
+
+.expedientes__alert-aviso--ok {
+  color: var(--color-success);
+}
+
+.expedientes__alert-aviso--pendiente {
+  color: var(--color-warning);
+}
+
+/* Fila por archivo en la apertura: nombre + tipo + quitar */
+.expedientes__archivo-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.expedientes__archivo-nombre {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.expedientes__archivo-select {
+  flex: 0 0 260px;
+}
+
+.expedientes__acciones {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.expedientes__subtitulo {
+  font-family: var(--font-title);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-strong);
+  margin: var(--spacing-md) 0 0;
+}
+
+.expedientes__seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.expedientes__accion--danger,
+.expedientes__accion--danger:hover:not(:disabled) {
+  color: var(--color-danger);
+}

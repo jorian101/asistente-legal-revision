@@ -1,0 +1,14 @@
+/* StateMessage: carga / vacío / error con el mismo aspecto en toda la app. */
+
+.mensaje {
+  margin: 0;
+  padding: var(--spacing-lg);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.error {
+  color: var(--color-danger);
+}

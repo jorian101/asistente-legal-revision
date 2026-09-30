@@ -1,0 +1,54 @@
+name: CI
+
+# Job de calidad del backend: lint + typecheck + tests con cobertura + seguridad.
+# El job de frontend no se incluye en esta edición del repositorio.
+on:
+  push:
+    branches: [main, "feat/*", "fix/*", "chore/*"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint + Typecheck + Tests + Security
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+          enable-cache: true
+          cache-dependency-glob: "backend/uv.lock"
+
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Sync dependencies (dev group)
+        run: uv sync --dev --frozen
+
+      - name: Lint (ruff + radon cc gate D)
+        run: make lint
+
+      - name: Typecheck (mypy baseline)
+        run: make typecheck
+
+      - name: Tests with coverage (gate 58%)
+        run: make test-cov
+
+      - name: Security (bandit HIGH/CRITICAL + pip-audit)
+        run: make security
+
+      - name: Quality metrics (radon report, no bloquea)
+        run: make metrics

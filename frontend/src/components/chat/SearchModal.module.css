@@ -1,0 +1,198 @@
+/* Modal de busqueda de conversaciones. */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--backdrop-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  z-index: 200;
+}
+
+.modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  max-height: 70dvh;
+  box-shadow: var(--shadow-modal);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.input {
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong);
+}
+
+.input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  width: 28px;
+  height: 28px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.close:hover {
+  background: var(--color-canvas);
+  color: var(--color-text-strong);
+}
+
+.list {
+  overflow-y: auto;
+  padding: var(--spacing-sm);
+  flex: 1;
+  min-height: 0;
+}
+
+.empty {
+  padding: var(--spacing-lg);
+  text-align: center;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-faint);
+}
+
+.section {
+  margin: 0 0 var(--spacing-sm);
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong);
+}
+
+.result:hover {
+  background: var(--color-canvas);
+}
+
+.result__title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result__folder {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Fila de resultado con acciones de CRUD. */
+.resultRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.resultRow .result {
+  flex: 1;
+  min-width: 0;
+}
+
+.resultRow__actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+.resultRow__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.resultRow__btn:hover {
+  background: var(--color-canvas);
+  color: var(--color-primary);
+  border-color: var(--color-border);
+}
+
+.resultRow__btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.resultRow__input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong);
+  background: var(--color-surface);
+}
+
+.resultRow__input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* Touch: objetivo mínimo de 44px en pantallas táctiles. */
+@media (pointer: coarse) {
+  .close,
+  .resultRow__btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Móvil: el overlay no debe comerse el ancho útil del modal. */
+@media (max-width: 768px) {
+  .backdrop {
+    padding: var(--spacing-sm);
+  }
+}

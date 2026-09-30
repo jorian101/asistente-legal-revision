@@ -1,0 +1,247 @@
+.mis-borradores {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.mis-borradores__grid {
+  display: grid;
+  /* min(): en pantallas angostas la tarjeta no fuerza scroll horizontal. */
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--spacing-md);
+}
+
+.mis-borradores__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 10px);
+  box-shadow: 0 1px 2px rgba(3, 33, 84, 0.05);
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.mis-borradores__card:hover {
+  box-shadow: 0 4px 12px rgba(3, 33, 84, 0.08);
+  border-color: var(--color-primary-soft-deep);
+}
+
+.mis-borradores__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.mis-borradores__tipo {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.mis-borradores__badge {
+  font-size: var(--font-size-xs);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.mis-borradores__badge--borrador {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.mis-borradores__badge--publicado {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.mis-borradores__autor {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.mis-borradores__fecha {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-faint);
+}
+
+.mis-borradores__expediente {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono, monospace);
+}
+
+.mis-borradores__preview {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.mis-borradores__acciones {
+  display: flex;
+  flex-wrap: wrap; /* tres botones no entran en 280px: sin wrap, "Eliminar" se salía de la tarjeta */
+  gap: var(--spacing-sm);
+  margin-top: auto;
+}
+
+.mis-borradores__vacio {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: var(--spacing-lg);
+  text-align: center;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md, 10px);
+}
+
+/* Detalle (modal) */
+.mis-borradores__detalle {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 33, 84, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  z-index: 100;
+}
+
+.mis-borradores__detalle-box {
+  background: var(--color-surface);
+  border-radius: var(--radius-md, 12px);
+  max-width: 760px;
+  width: 100%;
+  max-height: 85dvh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  gap: var(--spacing-md);
+}
+
+.mis-borradores__detalle-box--wide {
+  max-width: 980px;
+}
+
+
+
+
+.mis-borradores__detalle-preview {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+  background: var(--color-canvas, #f6f7f9);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.mis-borradores__detalle-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* Exportar PDF (window.print): solo la hoja del documento. Antes se imprimía también la app
+   de fondo (menú, barra superior, tarjetas), la cabecera del modal y el razonamiento. */
+@media print {
+  @page {
+    margin: 0; /* la hoja ya trae los márgenes del Tribunal: con los del navegador quedaban dobles */
+  }
+  body * {
+    visibility: hidden;
+  }
+  /* Sin recortes: el modal y su contenedor con scroll recortaban la hoja al imprimir. */
+  .mis-borradores__detalle,
+  .mis-borradores__detalle-box,
+  .mis-borradores__detalle-preview,
+  .doc-preview {
+    position: static !important;
+    overflow: visible !important;
+    max-height: none !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+  .doc-preview__hoja,
+  .doc-preview__hoja * {
+    visibility: visible;
+  }
+  .doc-preview__hoja {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+  .doc-preview__gutter,
+  .doc-preview__handle,
+  .doc-preview__flotante {
+    display: none !important;
+  }
+  .doc-preview__bloque,
+  .doc-preview__bloque--sel,
+  .doc-preview__bloque--click:hover {
+    background: none !important;
+    outline: none !important;
+  }
+}
+
+
+.mis-borradores__detalle-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+/* Modo pensar: razonamiento del modelo que origino el borrador (trazabilidad). */
+.mis-borradores__pensamiento {
+  margin: var(--spacing-sm) 0;
+}
+
+.mis-borradores__pensamiento-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-canvas);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  list-style: none;
+}
+
+.mis-borradores__pensamiento-toggle:hover {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.mis-borradores__pensamiento-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.mis-borradores__pensamiento-caja {
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-canvas);
+  border-left: 3px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 320px;
+  overflow-y: auto;
+}

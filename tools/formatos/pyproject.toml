@@ -1,0 +1,25 @@
+[project]
+name = "formatos"
+version = "0.1.0"
+description = "Extraccion de alta fidelidad de contenido y layout para obrados TSJM (docx/pdf nativo/escaneos)"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "onnxruntime>=1.29.0",
+    "pymupdf>=1.24",
+    "python-docx>=1.1",
+]
+
+[project.optional-dependencies]
+scan = [
+    "docling>=2.5",
+]
+ocr2 = [
+    "paddleocr>=2.8",
+    "paddlepaddle>=2.6",
+]
+marker = [
+    "marker-pdf>=0.39",
+]
+
+[tool.uv]
+package = false

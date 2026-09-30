@@ -1,0 +1,311 @@
+/* DoctrinaUploadForm — formulario de subida de doctrina privada. */
+
+.subir {
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.subirTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-strong);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.subirSubtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--spacing-sm);
+  line-height: 1.5;
+}
+
+.subirRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: flex-end;
+}
+
+.subirRow > * {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* --- File Upload Button --- */
+
+.fileUpload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.fileUploadInput {
+  display: none;
+}
+
+.fileUploadBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-strong);
+  cursor: pointer;
+  transition: border-color 150ms, background-color 150ms, color 150ms;
+  min-width: 160px;
+}
+
+.fileUploadBtn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.fileUploadBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fileUploadHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.filePreviews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+  pointer-events: auto;
+}
+
+.dropzoneError {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+  margin: var(--spacing-xs) 0 0;
+  text-align: left;
+}
+
+/* --- File Preview Chip --- */
+
+.fileChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  max-width: 100%;
+}
+
+.fileChipInvalid {
+  border-color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+.fileChipIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.fileChipName {
+  font-weight: 500;
+  color: var(--color-text-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 180px;
+}
+
+.fileChipInvalid .fileChipName {
+  color: var(--color-danger);
+}
+
+.fileChipSize {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  flex-shrink: 0;
+}
+
+.fileChipError {
+  color: var(--color-danger);
+  font-size: var(--font-size-xs);
+  flex-shrink: 0;
+}
+
+.fileChipRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms, color 150ms;
+}
+
+.fileChipRemove:hover:not(:disabled) {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.fileChipRemove:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* --- Styled Select --- */
+
+.styledSelect {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.styledSelectError .styledSelectWrapper {
+  border-color: var(--color-danger);
+}
+
+.styledSelectError .styledSelectNative:focus {
+  box-shadow: 0 0 0 3px var(--color-danger-soft);
+  border-color: var(--color-danger);
+}
+
+.styledSelectLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.required {
+  color: var(--color-danger);
+}
+
+.styledSelectWrapper {
+  position: relative;
+}
+
+.styledSelectNative {
+  width: 100%;
+  appearance: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  color: var(--color-text-strong);
+  cursor: pointer;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+
+.styledSelectNative:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.styledSelectNative:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.styledSelectNative:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.styledSelectHelp {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.styledSelectErrorText {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+  margin: 0;
+}
+
+/* --- Submit Button --- */
+
+.subirBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  max-width: 320px;
+  margin: var(--spacing-xs) auto 0;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms, transform 100ms;
+}
+
+.subirBtn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.subirBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.subirBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnSpinner {
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .subir {
+    padding: var(--spacing-sm);
+  }
+
+  .subirBtn {
+    max-width: none;
+  }
+}

@@ -1,0 +1,210 @@
+/* NavRail: navegación general. Ver DESIGN.md → Nav Rail. */
+
+.rail {
+  --rail-ancho: 232px;
+  width: var(--rail-ancho);
+  flex-shrink: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-primary-deep);
+  color: var(--color-surface);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transition: width 0.15s ease-out;
+}
+
+.colapsado {
+  --rail-ancho: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  height: 56px;
+  flex-shrink: 0;
+  padding: 0 var(--spacing-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--color-surface);
+  outline-offset: -2px;
+}
+
+.logo {
+  display: block;
+  flex-shrink: 0;
+  width: 28px;
+  height: 32px;
+}
+
+.brandNombre {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-sm);
+}
+
+.pie {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-border-strong);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: inset 3px 0 0 transparent;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.link svg {
+  flex-shrink: 0;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-surface);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-surface);
+  outline-offset: -2px;
+}
+
+.linkActivo {
+  background: var(--color-primary-soft-deep);
+  box-shadow: inset 3px 0 0 var(--color-surface);
+  color: var(--color-surface);
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Colapsado: solo iconos centrados; la etiqueta sale en el tooltip. */
+.colapsado .brand {
+  justify-content: center;
+  padding: 0;
+}
+
+.colapsado .link {
+  justify-content: center;
+  padding: 0;
+}
+
+.colapsado .brandNombre,
+.colapsado .label {
+  display: none;
+}
+
+.tip {
+  position: fixed;
+  left: calc(var(--rail-ancho) + var(--spacing-sm));
+  z-index: var(--z-popover);
+  transform: translateY(-50%);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  background: var(--color-text-strong);
+  color: var(--color-surface);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--shadow-lifted);
+}
+
+.soloMovil {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .rail,
+  .colapsado {
+    --rail-ancho: min(280px, 86vw);
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: var(--z-drawer);
+    transform: translateX(-100%);
+    /* Cerrado: fuera del orden de tabulación y del árbol accesible. */
+    visibility: hidden;
+    transition:
+      transform 0.2s,
+      visibility 0s 0.2s;
+  }
+
+  /* El drawer siempre va expandido, aunque en escritorio esté colapsado. */
+  .colapsado .brand {
+    justify-content: flex-start;
+    padding: 0 var(--spacing-md);
+  }
+
+  .colapsado .link {
+    justify-content: flex-start;
+    padding: 0 10px;
+  }
+
+  .colapsado .brandNombre,
+  .colapsado .label {
+    display: inline;
+  }
+
+  .link {
+    min-height: 44px;
+  }
+
+  .abierto {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.2s;
+  }
+
+  .soloMovil {
+    display: flex;
+  }
+
+  .soloEscritorio,
+  .tip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail {
+    transition: none;
+  }
+}

@@ -1,0 +1,56 @@
+# Instalación de usuario: todo en esta máquina, sin APIs externas.
+# Lo usan instalar.sh / actualizar.sh (misma carpeta) con el .env generado desde .env.usuario.example.
+# La app queda en http://localhost:${PUERTO_APP} (solo esta máquina).
+name: asistente-legal-usuario   # distinto del compose de desarrollo: volúmenes separados
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  qdrant:
+    image: qdrant/qdrant:v1.18.3
+    restart: unless-stopped
+    expose: ["6333", "6334"]
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  ollama:
+    image: ollama/ollama:0.34.2
+    restart: unless-stopped
+    expose: ["11434"]
+    volumes:
+      - ollama_data:/root/.ollama
+
+  app:
+    image: ghcr.io/OWNER/asistente-legal:${VERSION}
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "127.0.0.1:${PUERTO_APP}:8000"
+    volumes:
+      - uploads:/datos/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+      ollama:
+        condition: service_started
+
+volumes:
+  pgdata:
+  qdrant_data:
+  ollama_data:
+  uploads:

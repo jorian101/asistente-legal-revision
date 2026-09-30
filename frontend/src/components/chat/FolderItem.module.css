@@ -1,0 +1,159 @@
+/* FolderItem: carpeta en el sidebar (Fijados / Archivados / personalizadas). */
+
+.folder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.folder__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.folder__header:hover {
+  background: var(--color-canvas);
+}
+
+.folder__header:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.folder__toggle {
+  display: inline-flex;
+  color: var(--color-text-muted);
+}
+
+.folder__name {
+  flex: 1;
+  text-align: left;
+}
+
+.folder__count {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-faint);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.folder__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  width: 22px;
+  height: 22px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.folder__header:hover .folder__menu {
+  opacity: 1;
+}
+
+.folder__menu:hover {
+  background: var(--color-canvas);
+  color: var(--color-primary);
+}
+
+.folder__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: 0 0 0 var(--spacing-sm);
+}
+
+.folder__dropping {
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-sm);
+}
+
+.editing {
+  flex: 1;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--color-surface);
+  color: var(--color-text-strong);
+}
+
+.editing:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.menu {
+  position: fixed;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lifted);
+  min-width: 180px;
+  padding: var(--spacing-xs);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.menu__item:hover {
+  background: var(--color-canvas);
+}
+
+.menu__item--danger {
+  color: var(--color-danger);
+}
+
+.menu__item--danger:hover {
+  background: var(--color-danger-bg);
+}
+
+.menu__icon {
+  display: inline-flex;
+}
+
+/* Touch: objetivo mínimo de 44px en pantallas táctiles. */
+@media (pointer: coarse) {
+  .folder__menu {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

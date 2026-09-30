@@ -1,0 +1,221 @@
+/* Tipografías del sistema: sin descargas externas. */
+
+:root {
+  /* ── Paleta híbrida TribSupMil modernizada ──
+     Azul Tribunal (#032154) = autoridad (sidebar, headers)
+     Azul Acción (#0a3a82) = botones, links, foco
+     Escala neutra Tailwind fría = soporte */
+  --color-primary-deep: #032154;
+  --color-primary: #0a3a82;
+  --color-primary-hover: #062a66;
+  --color-primary-soft: rgba(10, 58, 130, 0.08);
+  --color-primary-soft-deep: rgba(10, 58, 130, 0.25);
+
+  --color-canvas: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #d8e0ea;
+  --color-border-strong: #cbd5e1;
+  --color-border-soft: rgba(216, 224, 234, 0.5);
+
+  --color-text-strong: #1f2933;
+  --color-text: #475569;
+  --color-text-muted: #64748b;
+  --color-text-faint: #94a3b8;
+
+  /* Estado */
+  --color-success: #047857;
+  --color-success-bg: #ecfdf5;
+  --color-success-border: #a7f3d0;
+  --color-warning: #b45309;
+  --color-warning-bg: #fffbeb;
+  --color-warning-border: #fde68a;
+  --color-danger: #b91c1c;
+  --color-danger-hover: #991b1b;
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fecaca;
+  --color-info: #1d4ed8;
+  --color-info-bg: #eff6ff;
+  --color-info-border: #bfd6f7;
+
+  /* Superficies y estados (observabilidad) */
+  --color-bg: #f8fafc;
+  --color-surface-elevated: #f1f5f9;
+  --color-primary-bg: rgba(10, 58, 130, 0.08);
+  --color-primary-border: rgba(10, 58, 130, 0.25);
+  --color-error: #b91c1c;
+  --color-error-bg: #fef2f2;
+  --color-error-text: #b91c1c;
+
+  /* Tipografía */
+  --font-display: 'Open Sans', system-ui, sans-serif;
+  --font-title: 'Open Sans', system-ui, sans-serif;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+  --font-label: 'Nunito Sans', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Radios */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-chat: 20px;
+  --radius-pill: 999px;
+
+  /* Sombras (alpha sobre Azul Tribunal, no negro) */
+  --shadow-sm: 0 1px 2px rgba(3, 33, 84, 0.06);
+  --shadow-resting: 0 1px 2px rgba(3, 33, 84, 0.05);
+  --shadow-lifted: 0 4px 12px rgba(3, 33, 84, 0.08);
+  --shadow-modal: 0 8px 24px rgba(3, 33, 84, 0.12);
+  --shadow-xl: 0 12px 40px rgba(3, 33, 84, 0.18);
+
+  /* Tamaños tipográficos */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* Backdrop modal */
+  --backdrop-modal: rgba(3, 33, 84, 0.45);
+
+  /* Capas: drawers < popovers (tooltip, menú de usuario) < modales */
+  --z-drawer-backdrop: 30;
+  --z-drawer: 40;
+  --z-popover: 50;
+  --z-modal: 100;
+
+  /* Shell */
+  --topbar-alto: 56px;
+  /* Columna del chat (mensajes, chips e input). */
+  --chat-ancho: 48rem;
+}
+
+/* Pantallas anchas: la columna del chat aprovecha el espacio libre. */
+@media (min-width: 1440px) {
+  :root {
+    --chat-ancho: 56rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-strong);
+  background: var(--color-canvas);
+  font-size: var(--font-size-sm);
+  line-height: 1.55;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+/* Móvil: inputs a 16px para que iOS no haga zoom al enfocar. */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1rem);
+  }
+}
+
+/* Focus visible global para accesibilidad (cuando no se define específico) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Respeta la preferencia del sistema de reducir movimiento (WCAG 2.3.3). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Campos de formulario compartidos (ver DESIGN.md → Input) ──
+   Un solo look para input/select/textarea: las páginas no definen el suyo. */
+.input,
+.select,
+.textarea {
+  width: 100%;
+  min-height: 36px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-strong);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  line-height: 1.35;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.select {
+  width: auto;
+  max-width: 100%;
+  padding-right: 2rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  cursor: pointer;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.input:disabled,
+.select:disabled,
+.textarea:disabled {
+  background-color: var(--color-canvas);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .input,
+  .select,
+  .textarea {
+    font-size: max(16px, 1rem);
+  }
+}

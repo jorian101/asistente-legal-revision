@@ -1,0 +1,84 @@
+/* SeleccionarObrasModal: cuerpo del Modal (la cáscara la pone ui/Modal). */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.buscar {
+  position: relative;
+  flex: 1 1 240px;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-muted);
+}
+
+.buscar svg {
+  position: absolute;
+  left: 10px;
+  pointer-events: none;
+}
+
+.buscar input {
+  padding-left: 32px;
+}
+
+.grupo + .grupo {
+  margin-top: var(--spacing-md);
+}
+
+.grupoTitulo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0 0 var(--spacing-xs);
+  color: var(--color-text-strong);
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.grupoCuenta {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.item:hover {
+  background: var(--color-canvas);
+}
+
+.item input {
+  margin-top: 3px;
+  accent-color: var(--color-primary);
+}
+
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.itemNombre {
+  overflow-wrap: anywhere;
+  color: var(--color-text-strong);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.itemMeta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}

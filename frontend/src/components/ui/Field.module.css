@@ -1,0 +1,30 @@
+/* Field: label 600 0.8rem + control + ayuda. Ver DESIGN.md → Input. */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label {
+  color: var(--color-text-strong);
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.hint,
+.error {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.35;
+}
+
+.hint {
+  color: var(--color-text-muted);
+}
+
+.error {
+  color: var(--color-danger);
+}

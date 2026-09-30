@@ -1,0 +1,141 @@
+/* DataTable — tokens híbridos TribSupMil modernizados. */
+.datatable__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.datatable__filtros {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.datatable__search {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: var(--font-body);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-strong);
+  font-size: var(--font-size-sm);
+  min-width: 200px;
+}
+
+.datatable__search:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.datatable__table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.datatable__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong);
+}
+
+.datatable__table th {
+  text-align: left;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-canvas);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.datatable__table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border-soft);
+  vertical-align: top;
+  color: var(--color-text-strong);
+}
+
+.datatable__table tr:last-child td {
+  border-bottom: none;
+}
+
+.datatable__table tbody tr:hover {
+  background: var(--color-primary-soft);
+}
+
+.datatable__skeleton {
+  display: block;
+  height: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--color-border) 25%, var(--color-canvas) 50%, var(--color-border) 75%);
+  background-size: 200% 100%;
+  animation: datatable-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes datatable-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.datatable__empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+}
+
+.datatable__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.datatable__page-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-text-strong);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.datatable__page-btn:hover:not(:disabled) {
+  background: var(--color-canvas);
+}
+
+.datatable__page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.datatable__page-info {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.datatable__num-header,
+.datatable td.datatable__num {
+  width: 3.5em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}

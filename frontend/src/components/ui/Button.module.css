@@ -1,0 +1,136 @@
+/* Button: variantes — primary, secondary, ghost, danger; tamaños md y sm. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: 36px;
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Primary — acción principal */
+.btn.primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* Secondary — acción alternativa */
+.btn.secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-strong);
+}
+
+.btn.secondary:hover:not(:disabled) {
+  background: var(--color-canvas);
+  border-color: var(--color-text-faint);
+}
+
+/* Ghost — acción sutil, sin fondo */
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-primary);
+}
+
+.btn.ghost:hover:not(:disabled) {
+  background: var(--color-primary-soft);
+}
+
+/* Danger — acción destructiva */
+.btn.danger {
+  background: var(--color-danger);
+  border-color: var(--color-danger);
+  color: var(--color-surface);
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: var(--color-danger-hover);
+  border-color: var(--color-danger-hover);
+}
+
+/* Sm — filas de tabla o lista, toolbars densas */
+.btn.sm {
+  min-height: 30px;
+  padding: 0 10px;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+}
+
+.btn.sm svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* IconOnly — solo icono, cuadrado */
+.btn.iconOnly {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.btn.iconOnly.sm {
+  width: 30px;
+  height: 30px;
+}
+
+.btn.iconOnly svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Loading spinner */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ensure spinner color is correct for each variant */
+.btn.primary .spinner,
+.btn.danger .spinner {
+  border-color: var(--color-surface);
+  border-right-color: transparent;
+}
+
+.btn.secondary .spinner,
+.btn.ghost .spinner {
+  border-color: var(--color-primary);
+  border-right-color: transparent;
+}

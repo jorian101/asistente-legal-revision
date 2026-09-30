@@ -1,0 +1,140 @@
+/* InputArea: textarea arriba, barra de adjuntos + enviar abajo. */
+
+.area {
+  width: 100%;
+  max-width: var(--chat-ancho);
+  margin: 0 auto;
+  padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-md);
+  /* iOS/Android con barra de gestos: el input no queda bajo el borde. */
+  padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: 12px var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-chat);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.field:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 24px;
+  padding: 0;
+  resize: none;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-strong);
+  font-family: var(--font-body);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+}
+
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.textarea:disabled {
+  color: var(--color-text-faint);
+  cursor: not-allowed;
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.send,
+.cancel,
+.attach {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-surface);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.send:hover:not(:disabled),
+.cancel:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.send:disabled,
+.cancel:disabled,
+.attach:disabled {
+  background: var(--color-border);
+  color: var(--color-text-faint);
+  cursor: not-allowed;
+}
+
+.send:focus-visible,
+.cancel:focus-visible,
+.attach:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.attach {
+  background: transparent;
+  color: var(--color-text-muted);
+}
+
+.attach:hover:not(:disabled) {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.attach:disabled {
+  background: transparent;
+}
+
+.cancel {
+  background: var(--color-text-muted);
+}
+
+.cancel:hover:not(:disabled) {
+  background: var(--color-text-strong);
+}
+
+.hint {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--color-text-faint);
+  font-size: var(--font-size-xs);
+  text-align: right;
+  padding-right: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+  .area {
+    padding-inline: var(--spacing-sm);
+  }
+
+  /* En táctil Enter es salto de línea: la ayuda de teclado no aplica. */
+  .hint {
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    # Solo loopback: el backend corre en el host y no hay motivo para exponer PG a la red.
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  qdrant:
+    image: qdrant/qdrant:v1.18.3
+    restart: unless-stopped
+    # Trail of Bits Regla 1: Qdrant NO expone puertos al host. Solo `expose`
+    # para que el backend (en la red de compose) lo alcance. El acceso desde
+    # el host (ej. para debugging) se hace via `docker compose exec` o
+    # pubblicando temporalmente con `docker compose port qdrant 6333`.
+    expose:
+      - "6333"
+      - "6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  # Ollama — LLM + embeddings on-premise. Opt-in: NO levanta con
+  # `docker compose up` solo; se activa explicitamente con
+  #   docker compose --profile ai up
+  # Esto permite correr en setups sin GPU (Ollama se ejecuta en el host).
+  # Cuando se activa, el backend debe alcanzar Ollama via `OLLAMA_HOST=http://ollama:11434`.
+  ollama:
+    image: ollama/ollama:0.34.2  # fijada (antes :latest); verificada en Docker Hub el 2026-09-20
+    restart: unless-stopped
+    profiles: ["ai"]
+    expose:
+      - "11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    # GPU dinamica: si NO hay GPU dedicada, `compose` ignora estas reservas y
+    # Ollama cae a CPU (lento pero funcional). Si hay GPU, la usa.
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  pgdata:
+  qdrant_data:
+  ollama_data:

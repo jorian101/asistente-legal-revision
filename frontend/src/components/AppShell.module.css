@@ -1,0 +1,59 @@
+/* AppShell: NavRail + (TopBar, contenido, pie). Ver DESIGN.md → Layout. */
+
+.shell {
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-canvas);
+  font-family: var(--font-body);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.contenido {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--spacing-lg);
+}
+
+.sinPadding {
+  padding: 0;
+}
+
+/* Contenedor único de página: mismo ancho y alineación en todas las
+   pantallas (antes cada página mezclaba 960/1200/64rem/sin tope). */
+.pagina {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* El backdrop del drawer solo existe en móvil. */
+.backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-drawer-backdrop);
+    border: 0;
+    background: var(--backdrop-modal);
+  }
+
+  .contenido {
+    padding: var(--spacing-md);
+  }
+
+  .sinPadding {
+    padding: 0;
+  }
+}

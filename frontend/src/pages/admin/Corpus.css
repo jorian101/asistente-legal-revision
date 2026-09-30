@@ -1,0 +1,189 @@
+/* Corpus — tokens híbridos TribSupMil modernizados. */
+.corpus-page {
+  font-family: var(--font-body);
+  color: var(--color-text-strong);
+}
+
+.corpus-page__frag-texto {
+  display: block;
+  max-width: 520px;
+  max-height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.corpus-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.corpus-page__header h2 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.corpus-page__upload-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-resting);
+}
+
+.corpus-page__upload-form-title {
+  margin: 0 0 var(--spacing-md) 0;
+  font-family: var(--font-title);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.corpus-page__field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.corpus-page__field label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.corpus-page__progress {
+  width: 120px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--color-primary) 25%, var(--color-border) 25%, var(--color-border) 50%, var(--color-primary) 50%, var(--color-primary) 75%, var(--color-border) 75%);
+  background-size: 40px 100%;
+  animation: corpus-progress 1s linear infinite;
+}
+
+@keyframes corpus-progress {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 0;
+  }
+}
+
+.corpus-page__norma-card__abrev {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 90px;
+}
+
+.corpus-page__error {
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.corpus-page__msg {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-strong);
+  margin: var(--spacing-xs) 0;
+}
+
+.corpus-page__empty-state {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.corpus-page__deteccion {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin: var(--spacing-sm) 0;
+  font-size: var(--font-size-sm);
+}
+
+.corpus-page__deteccion--match {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: var(--color-success);
+}
+
+.corpus-page__deteccion--mismatch {
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+  color: var(--color-warning);
+}
+
+.corpus-page__deteccion__titulo {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+.corpus-page__deteccion__confianza {
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.corpus-page__deteccion__candidato {
+  display: flex;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.corpus-page__deteccion__candidato span:first-child {
+  min-width: 90px;
+  font-weight: 600;
+}
+
+.corpus-page__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-strong);
+  cursor: pointer;
+}
+
+.corpus-page__toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.corpus-page__hint {
+  width: 100%;
+  margin: var(--spacing-xs) 0 0 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.corpus-page__acciones {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+  .corpus-page__field {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

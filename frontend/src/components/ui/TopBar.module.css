@@ -1,0 +1,260 @@
+/* TopBar: cabecera única del shell. Ver DESIGN.md → Layout → TopBar. */
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  height: var(--topbar-alto);
+  flex-shrink: 0;
+  padding: 0 var(--spacing-lg);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.menuBtn {
+  display: none;
+}
+
+.ubicacion {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  min-width: 0;
+  flex: 1;
+  font-family: var(--font-title);
+  white-space: nowrap;
+}
+
+.area {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.area:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.sep {
+  color: var(--color-text-faint);
+}
+
+.actual {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-text-strong);
+  font-size: var(--font-size-md);
+  font-weight: 700;
+}
+
+.buscar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: min(320px, 32vw);
+  height: 36px;
+  padding: 0 var(--spacing-sm) 0 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-canvas);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.buscar:hover {
+  border-color: var(--color-text-faint);
+}
+
+.buscarTexto {
+  flex: 1;
+  text-align: left;
+}
+
+.atajo {
+  padding: 1px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+}
+
+.usuario {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rol {
+  flex-shrink: 0;
+}
+
+.avatarBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  max-width: 260px;
+  padding: 4px 8px 4px 4px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.avatarBtn:hover {
+  background: var(--color-canvas);
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-deep);
+  color: var(--color-surface);
+  font-family: var(--font-title);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+
+.usuarioTexto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.usuarioNombre,
+.usuarioDetalle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.usuarioNombre {
+  color: var(--color-text-strong);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.usuarioDetalle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: var(--z-popover);
+  min-width: 220px;
+  padding: var(--spacing-xs);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-modal);
+}
+
+/* En escritorio el botón ya muestra nombre y cargo; la cabecera es para móvil. */
+.menuCabecera {
+  display: none;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  min-height: 40px;
+  padding: 0 var(--spacing-sm);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-strong);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: var(--color-primary-soft);
+}
+
+@media (max-width: 1024px) {
+  .buscar {
+    width: auto;
+  }
+
+  .buscarTexto,
+  .atajo {
+    display: none;
+  }
+
+  .usuarioTexto {
+    display: none;
+  }
+
+  .menuCabecera {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+  }
+
+  .menuCabecera span {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 768px) {
+  .barra {
+    gap: var(--spacing-sm);
+    padding: 0 var(--spacing-md);
+  }
+
+  .menuBtn {
+    display: inline-flex;
+  }
+
+  .buscar {
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+    border-color: var(--color-border);
+    background: transparent;
+  }
+
+  .area,
+  .sep {
+    display: none;
+  }
+}

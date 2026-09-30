@@ -1,0 +1,102 @@
+# Node / pnpm
+node_modules/
+dist/
+build/
+.pnpm-store/
+
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+backend/.venv/
+
+# Alembic / DB local
+*.sqlite3
+
+# Temporales de scripts (.tmp/)
+.tmp/
+**/.tmp/
+
+# Editores / OS
+.DS_Store
+.vscode/
+.idea/
+.env
+.env.local
+.env.server
+
+# Scripts db runtime (PID files, logs, lockfiles, mode)
+scripts/db/.tunnel.pid
+scripts/db/.tunnel.log
+scripts/db/.mode
+scripts/db/.sync.lock
+backend/scripts/sync/.lock
+backend/scripts/sync/estado.log
+backend/scripts/sync/backups/
+backend/scripts/evaluacion/.*.log
+backend/scripts/carga/_lectura/
+
+# Tooling local y caches (no van al repo)
+.atl/
+.husky.disabled/
+.agy-scratch/
+.context/
+.commandcode/
+.coverage
+.coverage.*
+
+# Caches y artefactos de coverage / mypy / pytest (Fase 0 red de seguridad)
+backend/.coverage
+backend/.coverage.*
+backend/.mypy_cache/
+backend/.pytest_cache/
+backend/htmlcov/
+
+# Reportes generados por el runner de evaluacion (P0) — artefactos runtime
+backend/scripts/evaluacion/reporte-evaluacion-v1.md
+backend/scripts/evaluacion/reporte-evaluacion-v1.json
+
+# Artefactos de build python (pip install -e)
+backend/src/backend.egg-info/
+
+# Perfiles temporales de stagehand/browser testing (rutas WSL weird)
+*.stagehand*
+wsl.localhost/
+
+# Skills locales personales y tooling privado de runtime (NO se commitean)
+# IMPORTANT: git no permite re-incluir archivos bajo un dir ignorado.
+# Estrategia: ignorar por nombre/path especifico lo que NO queremos, no el dir entero.
+.agents/skills/impeccable/
+.agents/skills/impeccable/**
+.opencode/skills/*-local/
+.opencode/skills/*-local/**
+.opencode/skills/*.tmp/
+.opencode/skills/*.tmp/**
+.opencode/commands/
+.opencode/commands/**
+.opencode/plugins/
+.opencode/plugins/**
+.gemini/antigravity-cli/
+.gemini/antigravity-cli/**
+.opencode/skills/extraer-doc-tesis/scripts/
+.opencode/skills/extraer-doc-tesis/scripts/**
+!.opencode/skills/extraer-doc-tesis/scripts/
+!.opencode/skills/extraer-doc-tesis/scripts/extract_document.py
+!.opencode/skills/extraer-doc-tesis/scripts/zotero_snapshot.py
+!.opencode/skills/extraer-doc-tesis/scripts/match_fuentes.py
+.opencode/skills/extraer-doc-tesis/assets/
+.opencode/skills/extraer-doc-tesis/assets/**
+
+# Scratch local del usuario (diagramas de flujo y generadores)
+/diagrama_flujo_critico.*
+/generate_diagrama*.py
+/icons_v2.py
+
+# Override local de dev (publica Qdrant en loopback; no commitear)
+docker-compose.override.yml
+
+# Instalación de usuario: datos generados al probar el paquete (nunca al repo)
+instalacion/corpus/
+instalacion/respaldos/
+instalacion/*.tar
+instalacion/*.tar.gz
